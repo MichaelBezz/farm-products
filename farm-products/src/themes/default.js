@@ -6,6 +6,7 @@ export const defaultTheme = {
   lineHeightDefault: '1.5',
   fontWeightDefault: '400',
   colorWhite: '#ffffff',
+  colorGray: '#f6f6f6',
   colorForText: '#333333',
   colorForAboutBackground: '#d8ecfe',
   colorForButton: '#ff732b',
