@@ -1,6 +1,7 @@
 import styled, {css} from 'styled-components';
 import {Swiper} from 'swiper/react';
 import {Container, P} from '../../styled';
+import Price from '../../ui/price/price';
 import checkboxIcon from '../../../assets/checkbox-icon.svg';
 
 export const StyledMain = styled.main`
@@ -65,7 +66,7 @@ export const PriceLabel = styled.span`
   line-height: 1.5;
 `;
 
-export const PriceValue = styled.span`
+export const PriceValue = styled(Price)`
   font-size: 24px;
   line-height: 1.3;
   font-weight: 700;

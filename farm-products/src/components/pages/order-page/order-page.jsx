@@ -26,6 +26,15 @@ SwiperCore.use([Pagination, Scrollbar, Mousewheel]);
 function OrderPage() {
   const [selectProductIds, setSelectProductIds] = useState([]);
   const [swiperRef, setSwiperRef] = useState(null);
+  const [address, setAddress] = useState('');
+
+  const selectProducts = selectProductIds.map((id) =>
+    products.find((product) => product.id === id)
+  );
+
+  const fullPrice = selectProducts.reduce(
+    (sum, product) => (sum += product.price), 0
+  );
 
   const handleOnClickProduct = (value, index) => {
     if (!selectProductIds.includes(value)) {
@@ -33,7 +42,17 @@ function OrderPage() {
     }
   };
 
-  return (
+  const handleBuyClick = () => {
+    alert(
+      `Спасибо за заказ, вы купили:\n${selectProducts.map(
+        (product) => `${product.name} - ${product.price} руб.\n`
+      )}
+      Итого: ${fullPrice} руб.
+      Доставка по адресу: ${address}.`
+    );
+  };
+
+  return products && products.length ? (
     <StyledMain>
       <Wrapper>
         <Form>
@@ -61,16 +80,27 @@ function OrderPage() {
             </Title>
 
             <Fieldset>
-              <AddressInput id="address" placeholder="Введите адрес доставки" />
+              <AddressInput
+                id="address"
+                value={address}
+                onChange={(event) => setAddress(event.target.value)}
+                placeholder="Введите адрес доставки"
+              />
               <AddressLabel className="visually-hidden" htmlFor="address">Ваш адрес.</AddressLabel>
             </Fieldset>
 
             <Fieldset $column $marginBottom={32}>
               <PriceLabel>Цена</PriceLabel>
-              <PriceValue>1 200 руб.</PriceValue>
+              <PriceValue value={fullPrice} />
             </Fieldset>
 
-            <Button $maxWidth>Купить</Button>
+            <Button
+              $maxWidth
+              disabled={!(selectProductIds.length && address)}
+              onClick={handleBuyClick}
+            >
+              Купить
+            </Button>
           </Panel>
         </Form>
 
@@ -92,6 +122,8 @@ function OrderPage() {
 
       </Wrapper>
     </StyledMain>
+  ) : (
+    "Продукты были слишком вкусные и их разобрали."
   );
 }
 
