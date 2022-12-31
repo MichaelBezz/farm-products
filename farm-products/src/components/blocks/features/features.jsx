@@ -3,6 +3,7 @@ import Title, {TitleSize} from '../../ui/title/title';
 import Feature from '../../ui/feature/feature';
 import Button from '../../ui/button/button';
 import {features} from '../../../mocks/features';
+import {AppRoute} from '../../../constants';
 
 function Features() {
   return (
@@ -18,7 +19,7 @@ function Features() {
           )}
         </List>
 
-        <Button link='/buy'>Купить</Button>
+        <Button link={AppRoute.ORDER}>Купить</Button>
       </Wrapper>
     </section>
   );

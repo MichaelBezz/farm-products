@@ -1,17 +1,28 @@
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {GlobalStyle} from './styles';
-import Header from '../layout/header/header';
-// import MainPage from '../pages/main-page/main-page';
+import ScrollToTop from '../ui/scroll-to-top/scroll-to-top';
+import PageWrapper from '../layout/page-wrapper/page-wrapper';
+import MainPage from '../pages/main-page/main-page';
 import OrderPage from '../pages/order-page/order-page';
-import Footer from '../layout/footer/footer';
+import {AppRoute} from '../../constants';
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <Header />
-      {/* <MainPage /> */}
-      <OrderPage />
-      <Footer />
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route path={AppRoute.MAIN} element={<PageWrapper />}>
+            <Route index element={<MainPage />} />
+            <Route
+              path={AppRoute.ORDER.replace(AppRoute.MAIN, "")}
+              element={<OrderPage />}
+            />
+          </Route>
+          <Route path='*' element={<div>404/Not found.</div>} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

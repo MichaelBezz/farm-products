@@ -1,6 +1,7 @@
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
-export const StyledButton = styled.a`
+export const StyledButton = styled(Link)`
   display: block;
   min-width: ${(props) => (props.$maxWidth ? "100%" : "260px")};
   padding: 17px 16px;

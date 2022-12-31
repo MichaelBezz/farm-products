@@ -1,15 +1,20 @@
+import {forwardRef} from "react";
 import {StyledButton} from './styles';
 
-function Button({ children, link, className, onClick, ...props }) {
-  return (
-    <StyledButton
-      {...props}
-      {...(link ? { to: link } : { as: 'button', onClick, type: 'button' })}
-      className={className}
-    >
-      {children}
-    </StyledButton>
-  );
-}
+const Button = forwardRef(
+  ({ children, minWidth, link, className, onClick, ...props }, ref) => {
+    return (
+      <StyledButton
+        className={className}
+        ref={ref}
+        $minWidth={minWidth}
+        {...(link ? {to: link} : {as: "button", onClick, type: "button"})}
+        {...props}
+      >
+        {children}
+      </StyledButton>
+    );
+  }
+);
 
 export default Button;

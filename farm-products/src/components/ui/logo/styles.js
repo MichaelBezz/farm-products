@@ -1,8 +1,9 @@
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {Img, P} from '../../styled/index';
 import farmerLogo from '../../../assets/farmer-logo.svg';
 
-export const LogoLink = styled.a`
+export const LogoLink = styled(Link)`
   display: flex;
   align-items: center;
   font-size: 28px;

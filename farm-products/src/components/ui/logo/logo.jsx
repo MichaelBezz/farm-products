@@ -1,8 +1,9 @@
 import {LogoLink, LogoImage, LogoText} from './styles';
+import {AppRoute} from '../../../constants';
 
 function Logo() {
   return (
-    <LogoLink>
+    <LogoLink to={AppRoute.MAIN}>
       <LogoImage />
       <LogoText>Фермерские продукты</LogoText>
     </LogoLink>
